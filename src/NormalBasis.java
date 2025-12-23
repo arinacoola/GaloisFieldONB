@@ -26,12 +26,12 @@ public class NormalBasis {
         return res;
     }
 
-    public void setBit(int ind) {
-        valEl[ind / 64] ^= (1L << (ind % 64));
-    }
-
     public int getBit(int ind) {
         return (int) ((valEl[ind / 64] >>> (ind % 64)) & 1L);
+    }
+
+    public void setBit(int ind) {
+        valEl[ind / 64] ^= (1L << (ind % 64));
     }
 
     public NormalBasis add(NormalBasis other) {
@@ -89,14 +89,6 @@ public class NormalBasis {
         return hammingWeight() & 1;
     }
 
-    public boolean equal(NormalBasis other) {
-        for (int i = 0; i < elem; i++) {
-            if (this.valEl[i] != other.valEl[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     private static volatile NormalBasis[] MULT_MATRIX = null;
     public static NormalBasis[] calMatrix() {
